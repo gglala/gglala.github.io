@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="La La Land">
 <meta property="og:description" content="地质统计学基本概念整理。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-14T04:49:59.017Z">
+<meta property="og:updated_time" content="2019-04-14T09:36:39.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Geostat basic">
 <meta name="twitter:description" content="地质统计学基本概念整理。">
@@ -352,17 +352,14 @@
 <h3 id="半变异函数"><a href="#半变异函数" class="headerlink" title="半变异函数﻿"></a>半变异函数﻿</h3><p>（只需要满足内蕴假设，绝大多数矿床都满足）﻿</p>
 <h3 id="块金效应和块金值"><a href="#块金效应和块金值" class="headerlink" title="块金效应和块金值﻿"></a>块金效应和块金值﻿</h3><p>h=0时，半变异函数在数学上等于0.﻿</p>
 <p>但是在实际中，在同一位置获得两个完全相同的样品几乎时完全不可能的，紧挨的两点样品品味也会有微小差异，这个差异就是块金效应。所以在h=0时，半变异函数的值为块金值。﻿</p>
-<h1 id="2-半变异函数的数学模型和拟合"><a href="#2-半变异函数的数学模型和拟合" class="headerlink" title="2 半变异函数的数学模型和拟合﻿"></a>2 半变异函数的数学模型和拟合﻿</h1><h2 id="2-1-随机模型"><a href="#2-1-随机模型" class="headerlink" title="2.1 随机模型﻿"></a>2.1 随机模型﻿</h2><p>=c﻿</p>
-<p>纯块金效应模型﻿</p>
-<p>$ c=sigma^2﻿ $</p>
-<p>关联性为零，即完全随机。﻿</p>
+<h1 id="2-半变异函数的数学模型和拟合"><a href="#2-半变异函数的数学模型和拟合" class="headerlink" title="2 半变异函数的数学模型和拟合﻿"></a>2 半变异函数的数学模型和拟合﻿</h1><h2 id="2-1-随机模型"><a href="#2-1-随机模型" class="headerlink" title="2.1 随机模型﻿"></a>2.1 随机模型﻿</h2><p>$ =c $ 纯块金效应模型﻿<br>$$<br>c=\sigma^2<br>$$<br>关联性为零，即完全随机。﻿</p>
 <h2 id="2-2-球状模型"><a href="#2-2-球状模型" class="headerlink" title="2.2 球状模型﻿"></a>2.2 球状模型﻿</h2><p>关联度随着间距的增加而减小，间距达到变程之后，不再变化。﻿</p>
 <h2 id="2-3-嵌套结构"><a href="#2-3-嵌套结构" class="headerlink" title="2.3 嵌套结构﻿"></a>2.3 嵌套结构﻿</h2><p>带有块金值的球模型﻿</p>
 <p>多个模型叠加﻿</p>
 <h2 id="2-4-半变异函数的拟合"><a href="#2-4-半变异函数的拟合" class="headerlink" title="2.4 半变异函数的拟合﻿"></a>2.4 半变异函数的拟合﻿</h2><p>实践中获得的是离散的点，需要将它拟合起来。﻿</p>
 <p>实际中常用嵌套模型。﻿</p>
 <h1 id="3-各向异性"><a href="#3-各向异性" class="headerlink" title="3 各向异性﻿"></a>3 各向异性﻿</h1><h2 id="anisotropy"><a href="#anisotropy" class="headerlink" title="anisotropy﻿"></a>anisotropy﻿</h2><p>区域化变量在不同的方向上呈现不同的特征。﻿</p>
-<h3 id="几何各向异性"><a href="#几何各向异性" class="headerlink" title="几何各向异性﻿"></a>几何各向异性﻿</h3><p>变程不同，sigma^2相同。﻿</p>
+<h3 id="几何各向异性"><a href="#几何各向异性" class="headerlink" title="几何各向异性﻿"></a>几何各向异性﻿</h3><p>变程不同，$\sigma^2$ 相同。﻿</p>
 <h3 id="各向异性椭圆（2D）"><a href="#各向异性椭圆（2D）" class="headerlink" title="各向异性椭圆（2D）﻿"></a>各向异性椭圆（2D）﻿</h3><p>到原点的距离表示该方向的变程。﻿</p>
 <p>变程长的方向上，品位的相关性比变程短的方向上强，品位更加稳定。对应矿体的走向方向。﻿</p>
 <h3 id="主方向（3D）"><a href="#主方向（3D）" class="headerlink" title="主方向（3D）﻿"></a>主方向（3D）﻿</h3><ol>
@@ -741,6 +738,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
