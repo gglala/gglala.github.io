@@ -1114,7 +1114,7 @@ pre .javascript .function {
   padding: 0 40px;
 /*color: $brand-color;*/
   color: #fffafa;
-  background: #222;
+/*background: $brand-bg;*/
   border-bottom: none;
 }
 .brand:hover {
@@ -1130,7 +1130,7 @@ pre .javascript .function {
   display: inline-block;
   vertical-align: top;
   line-height: 36px;
-  font-size: 20px;
+  font-size: 40px;
   font-weight: normal;
   font-family: 'Roboto Slab', 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
@@ -1830,7 +1830,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6bffd5;
+  background: #d0ff8a;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2685,13 +2685,4 @@ embed {
 ::-moz-selection {
   background: #00c4b6;
   color: #f7f7f7;
-}
-.brand {
-  position: relative;
-  display: inline-block;
-  padding: 0 40px;
-/*color: $brand-color;*/
-  color: #fffafa;
-/* background: #222; */
-  border-bottom: none;
 }
