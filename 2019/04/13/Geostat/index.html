@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="地质统计学基本概念整理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Geostat basic">
+<meta property="og:url" content="http://yoursite.com/2019/04/13/Geostat/index.html">
+<meta property="og:site_name" content="La La Land">
+<meta property="og:description" content="地质统计学基本概念整理。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-14T04:32:59.452Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Geostat basic">
+<meta name="twitter:description" content="地质统计学基本概念整理。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/13/Geostat/">
+
+
+
+
+
+  <title>Geostat basic | La La Land</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">La La Land</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/13/Geostat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ling an">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="La La Land">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Geostat basic</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-13T23:49:31+08:00">
+                2019-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>地质统计学基本概念整理。</p>
+<a id="more"></a>
+<h1 id="1-地统计学的估值方法"><a href="#1-地统计学的估值方法" class="headerlink" title="1 地统计学的估值方法﻿"></a>1 地统计学的估值方法﻿</h1><h2 id="1-1-传统统计学基于两个假设："><a href="#1-1-传统统计学基于两个假设：" class="headerlink" title="1.1 传统统计学基于两个假设：﻿"></a>1.1 传统统计学基于两个假设：﻿</h2><ol>
+<li><p>空间无限大，随机变量的特征值是完全随机分布的。﻿</p>
+</li>
+<li><p>样品的值与空间位置无关且相互独立。﻿</p>
+</li>
+</ol>
+<p>可以看到，地统计学不满足传统统计学的假设。﻿</p>
+<h2 id="1-2-区域化随机变量"><a href="#1-2-区域化随机变量" class="headerlink" title="1.2 区域化随机变量﻿"></a>1.2 区域化随机变量﻿</h2><p>样品的特征值X(z)是该点的空间位置z的函数，那么X即为区域化随机变量。﻿</p>
+<h3 id="协变函数"><a href="#协变函数" class="headerlink" title="协变函数﻿"></a>协变函数﻿</h3><p>两个普通随机变量的协方差。﻿</p>
+<p>协方差绝对值越大，相关性越高。﻿</p>
+<p>在实际中用得不多。（需要满足二阶稳定性假设）﻿</p>
+<h3 id="半变异函数"><a href="#半变异函数" class="headerlink" title="半变异函数﻿"></a>半变异函数﻿</h3><p>（只需要满足内蕴假设，绝大多数矿床都满足）﻿</p>
+<h3 id="块金效应和块金值"><a href="#块金效应和块金值" class="headerlink" title="块金效应和块金值﻿"></a>块金效应和块金值﻿</h3><p>h=0时，半变异函数在数学上等于0.﻿</p>
+<p>但是在实际中，在同一位置获得两个完全相同的样品几乎时完全不可能的，紧挨的两点样品品味也会有微小差异，这个差异就是块金效应。所以在h=0时，半变异函数的值为块金值。﻿</p>
+<h1 id="2-半变异函数的数学模型和拟合"><a href="#2-半变异函数的数学模型和拟合" class="headerlink" title="2 半变异函数的数学模型和拟合﻿"></a>2 半变异函数的数学模型和拟合﻿</h1><h2 id="2-1-随机模型"><a href="#2-1-随机模型" class="headerlink" title="2.1 随机模型﻿"></a>2.1 随机模型﻿</h2><p>=c﻿</p>
+<p>纯块金效应模型﻿</p>
+<p>$ c=sigma^2﻿ $</p>
+<p>关联性为零，即完全随机。﻿</p>
+<h2 id="2-2-球状模型"><a href="#2-2-球状模型" class="headerlink" title="2.2 球状模型﻿"></a>2.2 球状模型﻿</h2><p>关联度随着间距的增加而减小，间距达到变程之后，不再变化。﻿</p>
+<h2 id="2-3-嵌套结构"><a href="#2-3-嵌套结构" class="headerlink" title="2.3 嵌套结构﻿"></a>2.3 嵌套结构﻿</h2><p>带有块金值的球模型﻿</p>
+<p>多个模型叠加﻿</p>
+<h2 id="2-4-半变异函数的拟合"><a href="#2-4-半变异函数的拟合" class="headerlink" title="2.4 半变异函数的拟合﻿"></a>2.4 半变异函数的拟合﻿</h2><p>实践中获得的是离散的点，需要将它拟合起来。﻿</p>
+<p>实际中常用嵌套模型。﻿</p>
+<h1 id="3-各向异性"><a href="#3-各向异性" class="headerlink" title="3 各向异性﻿"></a>3 各向异性﻿</h1><h2 id="anisotropy"><a href="#anisotropy" class="headerlink" title="anisotropy﻿"></a>anisotropy﻿</h2><p>区域化变量在不同的方向上呈现不同的特征。﻿</p>
+<h3 id="几何各向异性"><a href="#几何各向异性" class="headerlink" title="几何各向异性﻿"></a>几何各向异性﻿</h3><p>变程不同，sigma^2相同。﻿</p>
+<h3 id="各向异性椭圆（2D）"><a href="#各向异性椭圆（2D）" class="headerlink" title="各向异性椭圆（2D）﻿"></a>各向异性椭圆（2D）﻿</h3><p>到原点的距离表示该方向的变程。﻿</p>
+<p>变程长的方向上，品位的相关性比变程短的方向上强，品位更加稳定。对应矿体的走向方向。﻿</p>
+<h3 id="主方向（3D）"><a href="#主方向（3D）" class="headerlink" title="主方向（3D）﻿"></a>主方向（3D）﻿</h3><ol>
+<li><p>作出水平面的各向异性椭圆，得到走向方向（长轴）和短轴﻿</p>
+</li>
+<li><p>沿短轴切一个垂直剖面，在该剖面上作各向异性椭圆，得到倾向方向（长轴）和主方向3（短轴），这个短轴就是空间中变程最短的方向﻿</p>
+</li>
+<li><p>用走向和倾向定义倾斜面，再作倾斜面的各向异性椭圆，得到主方向1（长轴）和主方向2（短轴），这个长轴就是空间中变程最短的方向﻿</p>
+</li>
+</ol>
+<h1 id="4-半变异函数的平均值"><a href="#4-半变异函数的平均值" class="headerlink" title="4 半变异函数的平均值﻿"></a>4 半变异函数的平均值﻿</h1><h2 id="1-在两个几何体之间的平均值"><a href="#1-在两个几何体之间的平均值" class="headerlink" title="1 在两个几何体之间的平均值﻿"></a>1 在两个几何体之间的平均值﻿</h2><h2 id="2-在一个几何体内的平均值"><a href="#2-在一个几何体内的平均值" class="headerlink" title="2 在一个几何体内的平均值﻿"></a>2 在一个几何体内的平均值﻿</h2><p>遍历，计算平均﻿</p>
+<h2 id="3-在一个几何体和一个取样之间的平均值"><a href="#3-在一个几何体和一个取样之间的平均值" class="headerlink" title="3 在一个几何体和一个取样之间的平均值﻿"></a>3 在一个几何体和一个取样之间的平均值﻿</h2><p>取样很小，可以看作一个点﻿</p>
+<h2 id="4-两个取样之间的“平均值”"><a href="#4-两个取样之间的“平均值”" class="headerlink" title="4 两个取样之间的“平均值”﻿"></a>4 两个取样之间的“平均值”﻿</h2><p>直接计算﻿</p>
+<h1 id="5-克里金法"><a href="#5-克里金法" class="headerlink" title="5 克里金法﻿"></a>5 克里金法﻿</h1><p>估值方法﻿</p>
+<p>无偏性、最佳性、线性﻿</p>
+<p>求（线性权值）﻿</p>
+<p>因为要满足无偏性，可以用拉格朗日乘子法﻿</p>
+<p>不仅可以算出估值，还得到了可丽金方差。﻿</p>
+<h1 id="6"><a href="#6" class="headerlink" title="6 ﻿"></a>6 ﻿</h1><p>什么是随机变量？自变量是什么？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Ling an
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/2019/04/13/Geostat/" title="Geostat basic">http://yoursite.com/2019/04/13/Geostat/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ling an</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-地统计学的估值方法"><span class="nav-text">1 地统计学的估值方法﻿</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-传统统计学基于两个假设："><span class="nav-text">1.1 传统统计学基于两个假设：﻿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-区域化随机变量"><span class="nav-text">1.2 区域化随机变量﻿</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#协变函数"><span class="nav-text">协变函数﻿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#半变异函数"><span class="nav-text">半变异函数﻿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块金效应和块金值"><span class="nav-text">块金效应和块金值﻿</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-半变异函数的数学模型和拟合"><span class="nav-text">2 半变异函数的数学模型和拟合﻿</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-随机模型"><span class="nav-text">2.1 随机模型﻿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-球状模型"><span class="nav-text">2.2 球状模型﻿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-嵌套结构"><span class="nav-text">2.3 嵌套结构﻿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-半变异函数的拟合"><span class="nav-text">2.4 半变异函数的拟合﻿</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-各向异性"><span class="nav-text">3 各向异性﻿</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#anisotropy"><span class="nav-text">anisotropy﻿</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几何各向异性"><span class="nav-text">几何各向异性﻿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各向异性椭圆（2D）"><span class="nav-text">各向异性椭圆（2D）﻿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主方向（3D）"><span class="nav-text">主方向（3D）﻿</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-半变异函数的平均值"><span class="nav-text">4 半变异函数的平均值﻿</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-在两个几何体之间的平均值"><span class="nav-text">1 在两个几何体之间的平均值﻿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-在一个几何体内的平均值"><span class="nav-text">2 在一个几何体内的平均值﻿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-在一个几何体和一个取样之间的平均值"><span class="nav-text">3 在一个几何体和一个取样之间的平均值﻿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-两个取样之间的“平均值”"><span class="nav-text">4 两个取样之间的“平均值”﻿</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-克里金法"><span class="nav-text">5 克里金法﻿</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6"><span class="nav-text">6 ﻿</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ling an</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
