@@ -1830,7 +1830,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9ac386;
+  background: #3c1465;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2725,6 +2725,15 @@ a {
 }
 .sidebar-nav li:hover {
   color: #0c0b0b;
+}
+.site-author-name {
+  margin: 48px 0 0;
+  color: #090909;
+  font-family: 'Comic Sans MS', sans-serif;
+}
+.post-toc .nav .active > a {
+  color: #062774;
+  border-bottom-color: #87daff;
 }
 #heart {
   animation: heartAnimate 1.33s ease-in-out infinite;
