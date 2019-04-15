@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/lalaland.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/movie.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/lalaland.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1 ndarray(N维数组)Python中的数组• 用list和tuple等数据结构表示数组− 一维数组 list = [1,2,3,4]− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]• array模块− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法 N维数组– NumPy中基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SciPy ndarray Series DataFrame">
+<meta property="og:url" content="http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/index.html">
+<meta property="og:site_name" content="La La Land">
+<meta property="og:description" content="1 ndarray(N维数组)Python中的数组• 用list和tuple等数据结构表示数组− 一维数组 list = [1,2,3,4]− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]• array模块− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法 N维数组– NumPy中基">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-15T12:13:41.013Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SciPy ndarray Series DataFrame">
+<meta name="twitter:description" content="1 ndarray(N维数组)Python中的数组• 用list和tuple等数据结构表示数组− 一维数组 list = [1,2,3,4]− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]• array模块− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法 N维数组– NumPy中基">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/">
+
+
+
+
+
+  <title>SciPy ndarray Series DataFrame | La La Land</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">La La Land</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ling an">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="La La Land">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SciPy ndarray Series DataFrame</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-14T14:41:01+08:00">
+                2019-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-ndarray-N维数组"><a href="#1-ndarray-N维数组" class="headerlink" title="1 ndarray(N维数组)"></a>1 ndarray(N维数组)</h2><h3 id="Python中的数组"><a href="#Python中的数组" class="headerlink" title="Python中的数组"></a>Python中的数组</h3><p>• 用list和tuple等数据结构表示数组<br>− 一维数组 list = [1,2,3,4]<br>− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]<br>• array模块<br>− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法</p>
+<h3 id="N维数组"><a href="#N维数组" class="headerlink" title="N维数组"></a>N维数组</h3><p>– NumPy中基本的数据结构<br>– 所有元素是同一种类型<br>– 别名为array<br>– 维度(dimensions)称为轴 (axes)，轴的个数称为秩(rank)<br>– 基本属性<br>• ndarray.ndim(秩)<br>• ndarray.shape(维度)<br>• ndarray.size(元素总个数)<br>• ndarray.dtype(元素类型)<br>• ndarray.itemsize(元素字节大小)</p>
+<h3 id="ndarray的创建"><a href="#ndarray的创建" class="headerlink" title="ndarray的创建"></a>ndarray的创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import numpy as np</span><br><span class="line">&gt;&gt;&gt; aArray = np.array([1,2,3])</span><br><span class="line">&gt;&gt;&gt; aArray</span><br><span class="line">array([1, 2, 3])</span><br><span class="line">&gt;&gt;&gt; bArray = np.array([(1,2,3),(4,5,6)]) </span><br><span class="line">&gt;&gt;&gt; bArray</span><br><span class="line">array([[1, 2, 3],</span><br><span class="line">      [4, 5, 6]])</span><br><span class="line">&gt;&gt;&gt; np.arange(1,5,0.5)</span><br><span class="line">array([1., 1.5, 2., 2.5, 3., 3.5, 4., 4.5])</span><br><span class="line">&gt;&gt;&gt; np.random.random((2,2))</span><br><span class="line">array([[ 0.79777004, 0.1468679 ], </span><br><span class="line">      [ 0.95838379, 0.86106278]])</span><br><span class="line">&gt;&gt;&gt; np.linspace(1, 2, 10, endpoint=False)</span><br><span class="line">array([ 1. , 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; np.ones([2,3])</span><br><span class="line">array([[ 1., 1., 1.], [ 1., 1., 1.]])</span><br><span class="line">&gt;&gt;&gt; np.zeros((2,2))</span><br><span class="line">array([[ 0., 0.], [ 0., 0.]])</span><br><span class="line">&gt;&gt;&gt; np.fromfunction(lambda i,j:(i+1)*(j+1), (9,9))</span><br><span class="line">array([[ 1., 2., 3., 4., 5., 6., 7., 8., 9.],</span><br><span class="line">    [ 2., 4., 6., 8., 10., 12., 14., 16., 18.],</span><br><span class="line">    [ 3., 6., 9., 12., 15., 18., 21., 24., 27.],</span><br><span class="line">    [ 4., 8., 12., 16., 20., 24., 28., 32., 36.],</span><br><span class="line">    [ 5., 10., 15., 20., 25., 30., 35., 40., 45.], </span><br><span class="line">    [ 6., 12., 18., 24., 30., 36., 42., 48., 54.], </span><br><span class="line">    [ 7., 14., 21., 28., 35., 42., 49., 56., 63.], </span><br><span class="line">    [ 8., 16., 24., 32., 40., 48., 56., 64., 72.], </span><br><span class="line">    [ 9., 18., 27., 36., 45., 54., 63., 72., 81.]])</span><br></pre></td></tr></table></figure>
+<h3 id="ndarray的操作"><a href="#ndarray的操作" class="headerlink" title="ndarray的操作"></a>ndarray的操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; aArray = np.array([(1,2,3),(4,5,6)])</span><br><span class="line">array([[1, 2, 3], </span><br><span class="line">     [4, 5, 6]])</span><br><span class="line">&gt;&gt;&gt; print(aArray[1]) </span><br><span class="line">[4 5 6]</span><br><span class="line">&gt;&gt;&gt; print(aArray[0:2]) </span><br><span class="line">[[1 2 3]</span><br><span class="line">[4 5 6]]</span><br><span class="line">&gt;&gt;&gt; print(aArray[:,[0,1]]) </span><br><span class="line">[[1 2]</span><br><span class="line">[4 5]]</span><br><span class="line">&gt;&gt;&gt; print(aArray[1,[0,1]]) </span><br><span class="line">[4 5]</span><br><span class="line">&gt;&gt;&gt; for row in aArray:</span><br><span class="line">        print(row) </span><br><span class="line">[1 2 3]</span><br><span class="line">[4 5 6]</span><br></pre></td></tr></table></figure>
+<p>reshape和resize<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; aArray = np.array([(1,2,3),(4,5,6)]) </span><br><span class="line">&gt;&gt;&gt; aArray.shape</span><br><span class="line">(2, 3)</span><br><span class="line">&gt;&gt;&gt; bArray = aArray.reshape(3,2)</span><br><span class="line">&gt;&gt;&gt; bArray</span><br><span class="line">array([[1, 2], </span><br><span class="line">    [3, 4],</span><br><span class="line">    [5, 6]])</span><br><span class="line">&gt;&gt;&gt; aArray</span><br><span class="line">array([[1, 2, 3], </span><br><span class="line">    [4, 5, 6]])</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; aArray.resize(3,2)</span><br><span class="line">&gt;&gt;&gt; aArray</span><br><span class="line">array([[1, 2], </span><br><span class="line">    [3, 4],</span><br><span class="line">    [5, 6]])</span><br><span class="line">&gt;&gt;&gt; bArray = np.array([1,3,7])</span><br><span class="line">&gt;&gt;&gt; cArray = np.array([3,5,8]) </span><br><span class="line">&gt;&gt;&gt; np.vstack((bArray, cArray)) </span><br><span class="line">array([[1, 3, 7],</span><br><span class="line">    [3, 5, 8]])</span><br><span class="line">&gt;&gt;&gt; np.hstack((bArray, cArray))</span><br><span class="line">array([1, 3, 7, 3, 5, 8])</span><br></pre></td></tr></table></figure>
+<h3 id="ndarray的运算"><a href="#ndarray的运算" class="headerlink" title="ndarray的运算"></a>ndarray的运算</h3><ol>
+<li><p>基本运算符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; aArray = np.array([(5,5,5),(5,5,5)]) </span><br><span class="line">&gt;&gt;&gt; bArray = np.array([(2,2,2),(2,2,2)]) </span><br><span class="line">&gt;&gt;&gt; cArray = aArray * bArray</span><br><span class="line">&gt;&gt;&gt; cArray</span><br><span class="line">array([[10, 10, 10], </span><br><span class="line">    [10, 10, 10]])</span><br><span class="line">&gt;&gt;&gt; aArray += bArray </span><br><span class="line">&gt;&gt;&gt; aArray</span><br><span class="line">array([[7, 7, 7],</span><br><span class="line">    [7, 7, 7]])</span><br><span class="line">&gt;&gt;&gt; a = np.array([1,2,3])</span><br><span class="line">&gt;&gt;&gt; b = np.array([[1,2,3],[4,5,6]]) </span><br><span class="line">&gt;&gt;&gt; a + b</span><br><span class="line">array([[2, 4, 6],</span><br><span class="line">    [5, 7, 9]])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基本数组统计方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; aArray = np.array([(1,2,3),(4,5,6)]) </span><br><span class="line">&gt;&gt;&gt; aArray.sum()</span><br><span class="line">21</span><br><span class="line">&gt;&gt;&gt; aArray.sum(axis = 0)</span><br><span class="line">array([5, 7, 9])</span><br><span class="line">&gt;&gt;&gt; aArray.sum(axis = 1)</span><br><span class="line">array([ 6, 15])</span><br><span class="line">&gt;&gt;&gt; aArray.min() # return value</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; aArray.argmax() # return index</span><br><span class="line">5</span><br><span class="line">&gt;&gt;&gt; aArray.mean()</span><br><span class="line">3.5</span><br><span class="line">&gt;&gt;&gt; aArray.var()</span><br><span class="line">2.9166666666666665</span><br><span class="line">&gt;&gt;&gt; aArray.std()</span><br><span class="line">1.707825127659933</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>sum<br>mean<br>std<br>var<br>min<br>max<br>argmin<br>argmax<br>cumsum<br>cumprod</p>
+<h3 id="ndarray的专门应用—线性代数"><a href="#ndarray的专门应用—线性代数" class="headerlink" title="ndarray的专门应用—线性代数"></a>ndarray的专门应用—线性代数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import numpy as np</span><br><span class="line">&gt;&gt;&gt; x = np.array([[1,2], [3,4]]) &gt;&gt;&gt; r1 = np.linalg.det(x)</span><br><span class="line">&gt;&gt;&gt; print(r1)</span><br><span class="line">-2.0</span><br><span class="line">&gt;&gt;&gt; r2 = np.linalg.inv(x)</span><br><span class="line">&gt;&gt;&gt; print(r2)</span><br><span class="line">[[-2. 1. ]</span><br><span class="line">[ 1.5 -0.5]]</span><br><span class="line">&gt;&gt;&gt; r3 = np.dot(x, x) &gt;&gt;&gt; print(r3)</span><br><span class="line">[[ 7 10]</span><br><span class="line">[15 22]]</span><br></pre></td></tr></table></figure>
+<p>dot<br>矩阵内积<br>linalg.det<br>行列式<br>linalg.inv<br>逆矩阵<br>linalg.solve<br>多元一次方 程组求根<br>linalg.eig<br>求特征值和<br>特征向量</p>
+<h3 id="ndarray的ufunc函数"><a href="#ndarray的ufunc函数" class="headerlink" title="ndarray的ufunc函数"></a>ndarray的ufunc函数</h3><p>ufunc(universal function) 是一种能对数组的每个元素 进行操作的函数。NumPy内 置的许多ufunc函数都是在C 语言级别实现的，计算速度 非常快。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Filename: math_numpy.py</span><br><span class="line">import time</span><br><span class="line">import math</span><br><span class="line">import numpy as np</span><br><span class="line">x = np.arange(0, 100, 0.01) t_m1 = time.clock()</span><br><span class="line">for i, t in enumerate(x):</span><br><span class="line">     x[i] = math.pow((math.sin(t)), 2)</span><br><span class="line">t_m2 = time.clock()</span><br><span class="line">y = np.arange(0,100,0.01)</span><br><span class="line">t_n1 = time.clock()</span><br><span class="line">y = np.power(np.sin(y), 2)</span><br><span class="line">t_n2 = time.clock()</span><br><span class="line">print(&apos;Running time of math:&apos;, t_m2 - t_m1) </span><br><span class="line">print(&apos;Running time of numpy:&apos;, t_n2 - t_n1)</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-Series-变长字典"><a href="#2-Series-变长字典" class="headerlink" title="2 Series(变长字典)"></a>2 Series(变长字典)</h2><p><a href="http://blog.chinaunix.net/uid-23100982-id-3540311.html" target="_blank" rel="noopener">Pandas中兼并数组和字典功能的Series</a><br>− 类似一维数组的对象<br>− 由数据和索引组成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from pandas import Series </span><br><span class="line">&gt;&gt;&gt; aSer = Series([1,2.0,&apos;a&apos;]) </span><br><span class="line">&gt;&gt;&gt; aSer</span><br><span class="line">0  1</span><br><span class="line">1  2</span><br><span class="line">2  a</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure></p>
+<h3 id="自定义Series的index"><a href="#自定义Series的index" class="headerlink" title="自定义Series的index"></a>自定义Series的index</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import pandas as pd</span><br><span class="line">&gt;&gt;&gt; bSer = pd.Series([&apos;apple&apos;,&apos;peach&apos;,&apos;lemon&apos;], index = [1,2,3]) </span><br><span class="line">&gt;&gt;&gt; bSer</span><br><span class="line">1 apple</span><br><span class="line">2 peach</span><br><span class="line">3 lemon</span><br><span class="line">dtype: object</span><br><span class="line">&gt;&gt;&gt; bSer.index</span><br><span class="line">Int64Index([1, 2, 3], dtype=&apos;int64&apos;)</span><br><span class="line">&gt;&gt;&gt; bSer.values</span><br><span class="line">array([&apos;apple&apos;, &apos;peach&apos;, &apos;lemon&apos;], dtype=object)</span><br></pre></td></tr></table></figure>
+<h3 id="Series的基本运算"><a href="#Series的基本运算" class="headerlink" title="Series的基本运算"></a>Series的基本运算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; aSer = pd.Series([3,5,7],index = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]) </span><br><span class="line">&gt;&gt;&gt; aSer[&apos;b&apos;]</span><br><span class="line">5</span><br><span class="line">&gt;&gt;&gt; aSer * 2</span><br><span class="line">a  6</span><br><span class="line">b 10</span><br><span class="line">c 14</span><br><span class="line">dtype: int64</span><br><span class="line">&gt;&gt;&gt; import numpy as np </span><br><span class="line">&gt;&gt;&gt; np.exp(aSer)</span><br><span class="line">a 20.085537 </span><br><span class="line">b 148.413159 </span><br><span class="line">c 1096.633158 </span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+<h3 id="Series的数据对齐"><a href="#Series的数据对齐" class="headerlink" title="Series的数据对齐"></a>Series的数据对齐</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; data = &#123;&apos;AXP&apos;:&apos;86.40&apos;,&apos;CSCO&apos;:&apos;122.64&apos;,&apos;BA&apos;:&apos;99.44&apos;&#125; </span><br><span class="line">&gt;&gt;&gt; sindex = [&apos;AXP&apos;,&apos;CSCO&apos;,&apos;BA&apos;,&apos;AAPL&apos;]</span><br><span class="line">&gt;&gt;&gt; aSer = pd.Series(data, index = sindex)</span><br><span class="line">&gt;&gt;&gt; aSer</span><br><span class="line">AXP      86.40</span><br><span class="line">CSCO    122.64</span><br><span class="line">BA       99.44</span><br><span class="line">AAPL       NaN</span><br><span class="line">dtype: object</span><br><span class="line">&gt;&gt;&gt; pd.isnull(aSer)</span><br><span class="line">AXP     False</span><br><span class="line">CSCO    False</span><br><span class="line">BA      False</span><br><span class="line">AAPL     True</span><br><span class="line">dtype: bool</span><br></pre></td></tr></table></figure>
+<h3 id="Series的name属性"><a href="#Series的name属性" class="headerlink" title="Series的name属性"></a>Series的name属性</h3><p>− Series对象本身及其索引均有一个name属性<br>− Series的name属性与其他重要功能关系密切<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; aSer = pd.Series(data, index = sindex) </span><br><span class="line">&gt;&gt;&gt; aSer.name = &apos;cnames&apos;</span><br><span class="line">&gt;&gt;&gt; aSer.index.name = &apos;volume&apos;</span><br><span class="line">&gt;&gt;&gt; aSer</span><br><span class="line">volume</span><br><span class="line">AXP      86.40</span><br><span class="line">CSCO    122.64</span><br><span class="line">BA       99.44</span><br><span class="line">AAPL       NaN</span><br><span class="line">Name: cnames, dtype: object</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-DataFrame-数据框"><a href="#3-DataFrame-数据框" class="headerlink" title="3 DataFrame(数据框)"></a>3 DataFrame(数据框)</h2><p>− 一个表格型的数据结构<br>− 含有一组有序的列(类似于index)<br>− 大致可看成共享同一个index的Series集合</p>
+<p>###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; data = &#123;&apos;name&apos;: [&apos;Wangdachui&apos;, &apos;Linling&apos;, &apos;Niuyun&apos;], &apos;pay&apos;: [4000, 5000, 6000]&#125; </span><br><span class="line">&gt;&gt;&gt; frame = pd.DataFrame(data)</span><br><span class="line">&gt;&gt;&gt; frame</span><br><span class="line">	name	pay</span><br><span class="line">0	Wangdachui	4000</span><br><span class="line">1	Linling	5000</span><br><span class="line">2	Niuyun	6000</span><br><span class="line">2   Niuyun  6000</span><br></pre></td></tr></table></figure></p>
+<h3 id="DataFrame的索引和值"><a href="#DataFrame的索引和值" class="headerlink" title="DataFrame的索引和值"></a>DataFrame的索引和值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; data = np.array([(&apos;Wangdachui&apos;, 4000), (&apos;Linling&apos;, 5000), (&apos;Niuyun&apos;, 6000)]) </span><br><span class="line">&gt;&gt;&gt; frame =pd.DataFrame(data, index = range(1, 4), columns = [&apos;name&apos;, &apos;pay&apos;]) </span><br><span class="line">&gt;&gt;&gt; frame</span><br><span class="line">	name	pay</span><br><span class="line">1	Wangdachui	4000</span><br><span class="line">2	Linling	5000</span><br><span class="line">3	Niuyun	6000</span><br><span class="line">&gt;&gt;&gt; frame.index</span><br><span class="line">RangeIndex(start=1, stop=4, step=1)</span><br><span class="line">&gt;&gt;&gt; frame.columns</span><br><span class="line">Index([&apos;name&apos;, &apos;pay&apos;], dtype=&apos;object&apos;)</span><br><span class="line">&gt;&gt;&gt; frame.values</span><br><span class="line">array([[&apos;Wangdachui&apos;, &apos;4000&apos;],</span><br><span class="line">       [&apos;Linling&apos;, &apos;5000&apos;],</span><br><span class="line">       [&apos;Niuyun&apos;, &apos;6000&apos;]], dtype=object)</span><br></pre></td></tr></table></figure>
+<h3 id="DataFrame的基本操作"><a href="#DataFrame的基本操作" class="headerlink" title="DataFrame的基本操作"></a>DataFrame的基本操作</h3><p>取DataFrame对象的列和行可获 得Series<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; frame[&apos;name&apos;]</span><br><span class="line">1    Wangdachui</span><br><span class="line">2       Linling</span><br><span class="line">3        Niuyun</span><br><span class="line">Name: name, dtype: object</span><br><span class="line">&gt;&gt;&gt; frame.pay</span><br><span class="line">1    4000</span><br><span class="line">2    5000</span><br><span class="line">3    6000</span><br><span class="line">Name: pay, dtype: object</span><br></pre></td></tr></table></figure></p>
+<p>DataFrame对象的修改和删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; frame[&apos;name&apos;] = &apos;admin&apos; </span><br><span class="line">&gt;&gt;&gt; frame</span><br><span class="line">    name	pay</span><br><span class="line">1	admin	4000</span><br><span class="line">2	admin	5000</span><br><span class="line">3	admin	6000</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; del frame[&apos;pay&apos;] </span><br><span class="line">&gt;&gt;&gt; frame</span><br><span class="line"></span><br><span class="line">    name</span><br><span class="line">1	Wangdachui</span><br><span class="line">2	Linling</span><br><span class="line">3	Niuyun</span><br></pre></td></tr></table></figure></p>
+<h3 id="DataFrame的统计功能"><a href="#DataFrame的统计功能" class="headerlink" title="DataFrame的统计功能"></a>DataFrame的统计功能</h3><p>DataFrame对象成员找最低工资和高工资人群信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; frame.pay.min()</span><br><span class="line">&apos;4000&apos;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; frame[frame.pay &gt;= &apos;5000&apos;] </span><br><span class="line">    name	pay</span><br><span class="line">2	Linling	5000</span><br><span class="line">3	Niuyun	6000</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Ling an
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/" title="SciPy ndarray Series DataFrame">http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ling an</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ndarray-N维数组"><span class="nav-text">1 ndarray(N维数组)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python中的数组"><span class="nav-text">Python中的数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#N维数组"><span class="nav-text">N维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray的创建"><span class="nav-text">ndarray的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray的操作"><span class="nav-text">ndarray的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray的运算"><span class="nav-text">ndarray的运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray的专门应用—线性代数"><span class="nav-text">ndarray的专门应用—线性代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray的ufunc函数"><span class="nav-text">ndarray的ufunc函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Series-变长字典"><span class="nav-text">2 Series(变长字典)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义Series的index"><span class="nav-text">自定义Series的index</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Series的基本运算"><span class="nav-text">Series的基本运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Series的数据对齐"><span class="nav-text">Series的数据对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Series的name属性"><span class="nav-text">Series的name属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DataFrame-数据框"><span class="nav-text">3 DataFrame(数据框)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame的索引和值"><span class="nav-text">DataFrame的索引和值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame的基本操作"><span class="nav-text">DataFrame的基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame的统计功能"><span class="nav-text">DataFrame的统计功能</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ling an</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
