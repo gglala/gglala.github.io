@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="La La Land">
 <meta property="og:description" content="1 ndarray(N维数组)Python中的数组• 用list和tuple等数据结构表示数组− 一维数组 list = [1,2,3,4]− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]• array模块− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法 N维数组– NumPy中基">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-15T12:23:56.437Z">
+<meta property="og:updated_time" content="2019-04-16T03:11:03.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SciPy ndarray Series DataFrame">
 <meta name="twitter:description" content="1 ndarray(N维数组)Python中的数组• 用list和tuple等数据结构表示数组− 一维数组 list = [1,2,3,4]− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]• array模块− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法 N维数组– NumPy中基">
@@ -385,7 +385,7 @@
 <p>sum<br>mean<br>std<br>var<br>min<br>max<br>argmin<br>argmax<br>cumsum<br>cumprod</p>
 <h3 id="ndarray的专门应用—线性代数"><a href="#ndarray的专门应用—线性代数" class="headerlink" title="ndarray的专门应用—线性代数"></a>ndarray的专门应用—线性代数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = np.array([[<span class="number">1</span>,<span class="number">2</span>], [<span class="number">3</span>,<span class="number">4</span>]]) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r1 = np.linalg.det(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r1)</span><br><span class="line"><span class="number">-2.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r2 = np.linalg.inv(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r2)</span><br><span class="line">[[<span class="number">-2.</span> <span class="number">1.</span> ]</span><br><span class="line">[ <span class="number">1.5</span> <span class="number">-0.5</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r3 = np.dot(x, x) &gt;&gt;&gt; print(r3)</span><br><span class="line">[[ <span class="number">7</span> <span class="number">10</span>]</span><br><span class="line">[<span class="number">15</span> <span class="number">22</span>]]</span><br></pre></td></tr></table></figure>
 <p>dot<br>矩阵内积<br>linalg.det<br>行列式<br>linalg.inv<br>逆矩阵<br>linalg.solve<br>多元一次方 程组求根<br>linalg.eig<br>求特征值和<br>特征向量</p>
-<h3 id="ndarray的ufunc函数"><a href="#ndarray的ufunc函数" class="headerlink" title="ndarray的ufunc函数"></a>ndarray的ufunc函数</h3><p>ufunc(universal function) 是一种能对数组的每个元素 进行操作的函数。NumPy内 置的许多ufunc函数都是在C 语言级别实现的，计算速度 非常快。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Filename: math_numpy.py</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">100</span>, <span class="number">0.01</span>) t_m1 = time.clock()</span><br><span class="line"><span class="keyword">for</span> i, t <span class="keyword">in</span> enumerate(x):</span><br><span class="line">     x[i] = math.pow((math.sin(t)), <span class="number">2</span>)</span><br><span class="line">t_m2 = time.clock()</span><br><span class="line">y = np.arange(<span class="number">0</span>,<span class="number">100</span>,<span class="number">0.01</span>)</span><br><span class="line">t_n1 = time.clock()</span><br><span class="line">y = np.power(np.sin(y), <span class="number">2</span>)</span><br><span class="line">t_n2 = time.clock()</span><br><span class="line">print(<span class="string">'Running time of math:'</span>, t_m2 - t_m1) </span><br><span class="line">print(<span class="string">'Running time of numpy:'</span>, t_n2 - t_n1)</span><br></pre></td></tr></table></figure></p>
+<h3 id="ndarray的ufunc函数"><a href="#ndarray的ufunc函数" class="headerlink" title="ndarray的ufunc函数"></a>ndarray的ufunc函数</h3><p>ufunc(universal function) 是一种能对数组的每个元素 进行操作的函数。NumPy内 置的许多ufunc函数都是在C 语言级别实现的，计算速度 非常快。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Filename: math_numpy.py</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">100</span>, <span class="number">0.01</span>) </span><br><span class="line">t_m1 = time.clock()</span><br><span class="line"><span class="keyword">for</span> i, t <span class="keyword">in</span> enumerate(x):</span><br><span class="line">     x[i] = math.pow((math.sin(t)), <span class="number">2</span>)</span><br><span class="line">t_m2 = time.clock()</span><br><span class="line">y = np.arange(<span class="number">0</span>,<span class="number">100</span>,<span class="number">0.01</span>)</span><br><span class="line">t_n1 = time.clock()</span><br><span class="line">y = np.power(np.sin(y), <span class="number">2</span>)</span><br><span class="line">t_n2 = time.clock()</span><br><span class="line">print(<span class="string">'Running time of math:'</span>, t_m2 - t_m1) </span><br><span class="line">print(<span class="string">'Running time of numpy:'</span>, t_n2 - t_n1)</span><br></pre></td></tr></table></figure></p>
 <h2 id="2-Series-变长字典"><a href="#2-Series-变长字典" class="headerlink" title="2 Series(变长字典)"></a>2 Series(变长字典)</h2><p><a href="http://blog.chinaunix.net/uid-23100982-id-3540311.html" target="_blank" rel="noopener">Pandas中兼并数组和字典功能的Series</a><br>− 类似一维数组的对象<br>− 由数据和索引组成</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pandas <span class="keyword">import</span> Series </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>aSer = Series([<span class="number">1</span>,<span class="number">2.0</span>,<span class="string">'a'</span>]) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>aSer</span><br><span class="line"><span class="number">0</span>  <span class="number">1</span></span><br><span class="line"><span class="number">1</span>  <span class="number">2</span></span><br><span class="line"><span class="number">2</span>  a</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
 <h3 id="自定义Series的index"><a href="#自定义Series的index" class="headerlink" title="自定义Series的index"></a>自定义Series的index</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bSer = pd.Series([<span class="string">'apple'</span>,<span class="string">'peach'</span>,<span class="string">'lemon'</span>], index = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bSer</span><br><span class="line"><span class="number">1</span> apple</span><br><span class="line"><span class="number">2</span> peach</span><br><span class="line"><span class="number">3</span> lemon</span><br><span class="line">dtype: object</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bSer.index</span><br><span class="line">Int64Index([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], dtype=<span class="string">'int64'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bSer.values</span><br><span class="line">array([<span class="string">'apple'</span>, <span class="string">'peach'</span>, <span class="string">'lemon'</span>], dtype=object)</span><br></pre></td></tr></table></figure>
@@ -437,6 +437,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/17/Python-basics/" rel="prev" title="Python basics">
+                Python basics <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -510,7 +526,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -518,6 +534,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
             
 
           </nav>

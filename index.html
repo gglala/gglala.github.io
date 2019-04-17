@@ -298,6 +298,279 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gglala.github.io/2019/04/17/Python-basics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ling an">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="La La Land">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/17/Python-basics/" itemprop="url">Python basics</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-17T13:43:47+08:00">
+                2019-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-Python基本语法元素"><a href="#1-Python基本语法元素" class="headerlink" title="1 Python基本语法元素"></a>1 Python基本语法元素</h1><h2 id="1-1-程序设计基本方法"><a href="#1-1-程序设计基本方法" class="headerlink" title="1.1 程序设计基本方法"></a>1.1 程序设计基本方法</h2><ul>
+<li>计算机的功能性和可编程性</li>
+<li>编译和解释、静态语言和脚本语言</li>
+<li>IPO、理解问题的计算部分</li>
+<li>掌握计算机编程的价值<h2 id="1-2-Python开发环境配置"><a href="#1-2-Python开发环境配置" class="headerlink" title="1.2 Python开发环境配置"></a>1.2 Python开发环境配置</h2><h2 id="1-3-实例1-温度转换"><a href="#1-3-实例1-温度转换" class="headerlink" title="1.3 实例1: 温度转换"></a>1.3 实例1: 温度转换</h2><h2 id="1-4-Python程序语法元素分析"><a href="#1-4-Python程序语法元素分析" class="headerlink" title="1.4 Python程序语法元素分析"></a>1.4 Python程序语法元素分析</h2><h3 id="程序的格式框架"><a href="#程序的格式框架" class="headerlink" title="程序的格式框架"></a>程序的格式框架</h3></li>
+</ul>
+<ol>
+<li>缩进：缩进表达程序的格式框架</li>
+<li>注释：</li>
+</ol>
+<ul>
+<li>单行注释：以#开头，其后内容为注释<br><code># 这里是单行注释</code></li>
+<li>多行注释：以’’’ 开头和结尾<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos; 这是多行注释第一行</span><br><span class="line">这是多行注释第二行 &apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="变量命名与保留字"><a href="#变量命名与保留字" class="headerlink" title="变量命名与保留字"></a>变量命名与保留字</h3><p>变量： 程序中用于保存和表示数据的占位符号<br>命名：变量采用标识符(名字) 来表示，关联标识符的过程叫命名<br>保留字：被编程语言内部定义并保留使用的标识符<br>and elif import raise globalas else in return nonlocalassert except is try Truebreak finally lambda while Falseclass for not with Nonecontinue from or yielddef if pass del</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>字符串、 整数、浮点数、 列表等</p>
+<h3 id="语句与函数"><a href="#语句与函数" class="headerlink" title="语句与函数"></a>语句与函数</h3><p>赋值语句<br>分支语句<br>函数</p>
+<h3 id="Python程序的输入输出"><a href="#Python程序的输入输出" class="headerlink" title="Python程序的输入输出"></a>Python程序的输入输出</h3><ol>
+<li>input()<br> <code>&lt;变量&gt; = input(&lt;提示信息字符串&gt;)</code><br> raw_input() 和input():</li>
+</ol>
+<ul>
+<li>raw_input() 直接读取控制台的输入（任何类型的输入它都可以接收）</li>
+<li>input() 希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError<br>除非对 input() 有特别需要，否则一般情况下我们都是推荐使用 raw_input() 来与用户交互<br>???这是python3的语法吗，我用py3怎么觉得用input不输引号也没问题???</li>
+</ul>
+<ol start="2">
+<li>print()<br> <code>print(&lt;拟输出字符串或字符串变量&gt;)</code><br> 字符串类型的一对引号仅在程序内部使用，输出无引号 ❤<br> 2.1. print()函数的格式化：<br> <code>print(&quot;转换后的温度是{:.2f}C&quot;.format(C))</code><br> <code>{ }</code>表示槽，后续变量填充到槽中<br> <code>{ :.2f }</code>表示将变量C填充到这个位置时取小数点后2位<br> 2.2. 用<code>%</code>格式化字符串(较少用到)<br> 同C中sprintf函数的语法 <code>print &quot;你好 %s&quot; %a</code><br> 字符串用<code>%s</code>，整数用<code>%d</code><br> 2.3. eval()：去掉参数最外侧引号并执行余下语句的函数<br> 2.4. print()格式化<br> “温度转换”代码分析</li>
+</ol>
+<h1 id="2-基本数据类型"><a href="#2-基本数据类型" class="headerlink" title="2 基本数据类型"></a>2 基本数据类型</h1><h2 id="2-1-数字类型及操作"><a href="#2-1-数字类型及操作" class="headerlink" title="2.1 数字类型及操作"></a>2.1 数字类型及操作</h2><h3 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h3><p>可正可负，没有取值范围限制<br>pow(x,y)函数：计算 xy，想算多大算多大<br>4种进制表示形式</p>
+<ul>
+<li>十进制： 1010, 99, -217</li>
+<li>二进制，以0b或0B开头： 0b010, -0B101</li>
+<li>八进制，以0o或0O开头： 0o123, -0O456</li>
+<li>十六进制，以0x或0X开头： 0x9a, -0X89</li>
+</ul>
+<h3 id="浮点数类型"><a href="#浮点数类型" class="headerlink" title="浮点数类型"></a>浮点数类型</h3><p>带有小数点及小数的数字<br>浮点数取值范围和小数精度都存在限制， 但常规计算可忽略<br>浮点数间运算存在不确定尾数，不是bug</p>
+<p>浮点数间运算及比较用round()函数辅助<br>round(x, d)： 对x四舍五入， d是小数截取位数<br>取值范围数量级约-10308至10308，精度数量级10-16<br>浮点数可以采用科学计数法表示<a>e<b></b></a></p>
+<h3 id="复数类型"><a href="#复数类型" class="headerlink" title="复数类型"></a>复数类型</h3><p>a+bj 被称为复数，其中， a是实部， b是虚部</p>
+<h3 id="数值运算操作符"><a href="#数值运算操作符" class="headerlink" title="数值运算操作符"></a>数值运算操作符</h3><p> x + y 加， x与y之和<br>x – y 减， x与y之差<br>x * y 乘， x与y之积<br>x / y 除， x与y之商 10/3结果是3.3333333333333335<br>x // y 整数除， x与y之整数商 10//3结果是3<br><code>x % y</code>余数，模运算<code>10%3</code>结果是1<br>x ** y 幂运算， x的y次幂， xy当y是小数时，开方运算<br>类型间可进行混合运算，生成结果为”最宽”类型</p>
+<h3 id="数值运算函数"><a href="#数值运算函数" class="headerlink" title="数值运算函数"></a>数值运算函数</h3><p>abs()<br> divmod()<br>pow()<br>round()<br>max()<br>min()<br>int()<br>float()<br>complex()</p>
+<h2 id="2-2-实例3-天天向上的力量"><a href="#2-2-实例3-天天向上的力量" class="headerlink" title="2.2 实例3: 天天向上的力量"></a>2.2 实例3: 天天向上的力量</h2><h2 id="2-3-字符串类型及操作"><a href="#2-3-字符串类型及操作" class="headerlink" title="2.3 字符串类型及操作"></a>2.3 字符串类型及操作</h2><h3 id="字符串类型的表示"><a href="#字符串类型的表示" class="headerlink" title="字符串类型的表示"></a>字符串类型的表示</h3><p>字符串是字符的有序序列，可以对其中的字符进行索引</p>
+<ol>
+<li>2类共4种 表示方法</li>
+</ol>
+<ul>
+<li>由一对单引号或双引号表示，仅表示单行字符串</li>
+<li>由一对三单引号或三双引号表示，可表示多行字符串<br>如果希望在字符串中包含双引号或单引号呢？-可以用括号括起来</li>
+</ul>
+<ol start="2">
+<li>字符串的序号<br>正向递增序号<br>反向递减序号</li>
+<li>字符串的使用：使用[ ]获取字符串中一个或多个字符<br>索引：返回字符串中单个字符 &lt;字符串&gt;[M]<br>切片：返回字符串中一段字符子串 &lt;字符串&gt;[M: N]<br><code>&lt;字符串&gt;[M: N]</code>， M缺失表示至开头， N缺失表示至结尾<br><code>&lt;字符串&gt;[M: N: K]</code>，根据步长K对字符串切片</li>
+<li>字符串的特殊字符<br>转义符 \ :转义符表达特定字符的本意<br>转义符形成一些组合，表达一些不可打印的含义</li>
+</ol>
+<h3 id="字符串操作符"><a href="#字符串操作符" class="headerlink" title="字符串操作符"></a>字符串操作符</h3><p> x + y 连接两个字符串x和y<br>n <em> x 或 x </em> n 复制n次字符串x<br>x in s 如果x是s的子串，返回True，否则返回False</p>
+<h3 id="字符串处理函数"><a href="#字符串处理函数" class="headerlink" title="字符串处理函数"></a>字符串处理函数</h3><p>len(x) 长度，返回字符串x的长度<br>str(x) 任意类型x所对应的字符串形式 ❤与eval相反的用途<br>hex(x) 或 oct(x) 整数x的十六进制或八进制小写形式字符串<br>chr(u) x为Unicode编码，返回其对应的字符<br>ord(x) x为字符，返回其对应的Unicode编码</p>
+<h3 id="字符串处理方法"><a href="#字符串处理方法" class="headerlink" title="字符串处理方法"></a>字符串处理方法</h3><p>“方法”特指<a>.<b>()风格中的函数<b>()<br>方法本身也是函数，但与<a>有关， <a>.<b>()风格使用</b></a></a></b></b></a></p>
+<p>字符串及变量也是<a>，存在一些方法:</a></p>
+<p>str.lower() 或 str.upper() 返回字符串的副本，全部字符小写/大写<br>str.split(sep=None) 返回一个列表，由str根据sep被分隔的部分组成<br><code>&quot;A,B,C&quot;.split(&quot;, &quot;) 结果为 [&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]</code><br>str.count(sub) 返回子串sub在str中出现的次数<br>str.replace(old, new)返回字符串str副本，所有old子串被替换为new<br>str.center(width[,fillchar])字符串str根据宽度width居中， fillchar可选<br><code>&quot;python&quot;.center(20,&quot;=&quot;) 结果为&#39;=======python=======&#39;</code><br>str.strip(chars)从str中去掉在其左侧和右侧chars中列出的字符<br><code>&quot;= python= &quot;.strip(&quot; =np&quot;) 结果为&quot;ytho&quot;</code><br>str.join(iter)在iter变量除最后元素外每个元素后增加一个str<br><code>&quot;, &quot;.join(&quot;12345&quot;) 结果为&quot;1,2,3,4,5&quot; #主要用于字符串分隔等</code></p>
+<h3 id="字符串类型的格式化"><a href="#字符串类型的格式化" class="headerlink" title="字符串类型的格式化"></a>字符串类型的格式化</h3><p>字符串格式化使用.format()方法，用法如下：<br><code>&lt;模板字符串&gt;.format(&lt;逗号分隔的参数&gt;)</code></p>
+<h2 id="2-4-模块2-time库的使用"><a href="#2-4-模块2-time库的使用" class="headerlink" title="2.4 模块2: time库的使用"></a>2.4 模块2: time库的使用</h2><h3 id="time库基本介绍"><a href="#time库基本介绍" class="headerlink" title="time库基本介绍"></a>time库基本介绍</h3><p><code>import time time.&lt;b&gt;()</code></p>
+<ol>
+<li>时间获取<br>time()获取当前时间戳，即计算机内部时间值，浮点数<br>ctime()获取当前时间并以易读方式表示，返回字符串<br>gmtime()获取当前时间，表示为计算机可处理的时间格式</li>
+<li>时间格式化<br>格式化：类似字符串格式化，需要有展示模板<br><code>strftime(tpl, ts)</code> tpl是格式化模板字符串，用来定义输出效果；ts是计算机内部时间类型变量</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;t = time.gmtime()</span><br><span class="line">&gt;&gt;&gt;time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;,t)</span><br><span class="line">&apos;2018-01-26 12:55:20&apos;</span><br></pre></td></tr></table></figure>
+<p>strptime(str, tpl)str是字符串形式的时间值tpl是格式化模板字符串，用来定义输入效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;timeStr = &apos;2018-01-26 12:55:20&apos;</span><br><span class="line">&gt;&gt;&gt;time.strptime(timeStr, &quot;%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line">time.struct_time(tm_year=2018, tm_mon=1,tm_mday=26, tm_hour=4, tm_min=11, tm_sec=16,tm_wday=4, tm_yday=26, tm_isdst=0)</span><br></pre></td></tr></table></figure>
+<p>格式化控制符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">%Y 年份 0000~9999，例如： 1900</span><br><span class="line">%m 月份 01~12，例如： 10</span><br><span class="line">%B 月份名称 January~December，例如： April</span><br><span class="line">%b 月份名称缩写 Jan~Dec，例如： Apr</span><br><span class="line">%d 日期 01~31 ，例如： 25</span><br><span class="line">%A 星期 Monday~Sunday，例如： Wednesday</span><br><span class="line">%a 星期缩写 Mon~Sun，例如： Wed</span><br><span class="line">%H 小时（ 24h制） 00~23，例如： 12</span><br><span class="line">%h 小时（ 12h制） 01~12，例如： 7</span><br><span class="line">%p 上/下午 AM, PM，例如： PM</span><br><span class="line">%M 分钟 00~59，例如： 26</span><br><span class="line">%S 秒 00~59，例如： 26</span><br></pre></td></tr></table></figure>
+<ul>
+<li>日历模块<pre><code>import calendar print calendar.month(2017, 7)
+</code></pre></li>
+</ul>
+<h3 id="程序计时应用"><a href="#程序计时应用" class="headerlink" title="程序计时应用"></a>程序计时应用</h3><ol>
+<li>程序计时指测量起止动作所经历时间的过程</li>
+<li>测量时间： perf_counter()<br>perf_counter() 返回一个CPU级别的精确时间计数值，单位为秒由于这个计数值起点不确定，连续调用差值才有意义</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; start = time.perf_counter()318.66599499718114</span><br><span class="line">&gt;&gt;&gt; end = time.perf_counter()341.3905185375658</span><br><span class="line">&gt;&gt;&gt; end - start22.724523540384666</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>产生时间： sleep()<br>sleep(s)s拟休眠的时间，单位是秒，可以是浮点数<br>time.sleep(3.3)</li>
+</ol>
+<h2 id="2-5-实例4-文本进度条"><a href="#2-5-实例4-文本进度条" class="headerlink" title="2.5 实例4: 文本进度条"></a>2.5 实例4: 文本进度条</h2><p><a href="http://www.wklken.me/posts/2013/03/16/python-base-introduction.html" target="_blank" rel="noopener">Python-基础-简介/入门</a><br><a href="http://www.wklken.me/posts/2013/03/09/python-base-math.html" target="_blank" rel="noopener">Python-基础-数字小结</a><br><a href="http://www.wklken.me/posts/2013/03/10/python-base-set.html" target="_blank" rel="noopener">Python-基础-集合小结</a><br><a href="http://www.wklken.me/posts/2013/03/10/python-base-string.html" target="_blank" rel="noopener">Python-基础-字符串小结</a><br><a href="http://www.wklken.me/posts/2013/03/09/python-base-dict.html" target="_blank" rel="noopener">Python-基础-字典小结</a><br><a href="http://www.wklken.me/posts/2013/03/09/python-base-tuple.html" target="_blank" rel="noopener">Python-基础-元组小结</a><br><a href="http://www.wklken.me/posts/2012/12/30/python-base-list.html" target="_blank" rel="noopener">Python-基础-列表及列表解析小结</a></p>
+<p><a href="http://www.wklken.me/posts/2013/03/16/python-base-builtins.html" target="_blank" rel="noopener">Python-基础-内置函数小结</a><br><a href="http://www.wklken.me/posts/2013/03/16/python-base-file.html" target="_blank" rel="noopener">Python-基础-文件处理小结</a><br><a href="http://www.wklken.me/posts/2013/03/16/python-base-function.html" target="_blank" rel="noopener">Python-基础-函数小结</a><br><a href="http://www.wklken.me/posts/2013/03/10/python-base-extra-math.html" target="_blank" rel="noopener">Python-基础-数字处理相关模块</a></p>
+<h1 id="3-程序的两种控制结构"><a href="#3-程序的两种控制结构" class="headerlink" title="3 程序的两种控制结构"></a>3 程序的两种控制结构</h1><h2 id="3-1-程序的分支结构"><a href="#3-1-程序的分支结构" class="headerlink" title="3.1 程序的分支结构"></a>3.1 程序的分支结构</h2><ol>
+<li>单分支结构<code>if</code></li>
+<li>二分支结构<code>if-else</code><br>紧凑形式：适用于简单表达式的二分支结构。<code>&lt;表达式1&gt; if &lt;条件&gt; else &lt;表达式2&gt;</code></li>
+<li>多分支结构<code>if-elif-else</code><br>注意多条件之间的包含关系 not and or &gt; &gt;= == &lt;= &lt; !=</li>
+</ol>
+<ul>
+<li>条件判断及组合</li>
+<li>程序的异常处理<code>try-except-else-finally</code></li>
+</ul>
+<h2 id="3-2-实例5-身体质量指数BMI"><a href="#3-2-实例5-身体质量指数BMI" class="headerlink" title="3.2 实例5: 身体质量指数BMI"></a>3.2 实例5: 身体质量指数BMI</h2><p>多分支条件之间的覆盖是重要问题<br>分支结构是程序的重要框架，读程序先看分支</p>
+<h2 id="3-3-程序的循环结构"><a href="#3-3-程序的循环结构" class="headerlink" title="3.3 程序的循环结构"></a>3.3 程序的循环结构</h2><p>程序的循环结构</p>
+<h3 id="遍历循环"><a href="#遍历循环" class="headerlink" title="遍历循环"></a>遍历循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for iter_var in iterable_object: </span><br><span class="line">    suite_to_repeat</span><br></pre></td></tr></table></figure>
+<p>遍历iterable_object形成的循环运行方式，有明确的循环的次数。<br>可迭代的对象iterable_object：<br>String<br>List<br>Tuple<br>Dictionary<br>File）<br>range()返回的也是 iterable_object</p>
+<p>遍历循环的应用：</p>
+<ol>
+<li>计数循环<br>(N次)<code>for i in range(N) :</code><br>(特定次) <code>for i in range(M,N,K) :</code>从[M,N)，步长为K</li>
+<li>字符串遍历循环 <code>for c in s :</code><br>s是字符串，遍历字符串每个字符，产生循环</li>
+<li>列表遍历循环<code>for item in ls :</code><br>ls是一个列表， 遍历其每个元素，产生循环</li>
+<li>文件遍历循环 <code>for line in fi :</code><br>fi是一个文件标识符，遍历其每行，产生循环</li>
+</ol>
+<p>以上for都是用于遍历一个数据集内的成员，for还可用于：<br>列表解析<br>生成器表达式</p>
+<h3 id="无限循环-while-lt-条件-gt"><a href="#无限循环-while-lt-条件-gt" class="headerlink" title="无限循环 while &lt;条件&gt; :"></a>无限循环 while &lt;条件&gt; :</h3><p>反复执行语句块，直到条件不满足时结束<br>(CTRL + C 退出执行)</p>
+<h3 id="循环控制保留字"><a href="#循环控制保留字" class="headerlink" title="循环控制保留字"></a>循环控制保留字</h3><ul>
+<li>break跳出并结束当前整个循环，执行循环后的语句</li>
+<li>continue结束当次循环，继续执行后续次数循环<br>break和continue可以与for和while循环搭配使用，一个break仅跳出一个循环</li>
+</ul>
+<h3 id="循环的高级用法break与else"><a href="#循环的高级用法break与else" class="headerlink" title="循环的高级用法break与else"></a>循环的高级用法break与else</h3><p>当循环没有被break语句退出时，执行else语句块，else语句块作为”正常”完成循环的奖励<br>这里else的用法与异常处理中else用法相似</p>
+<h2 id="3-4-模块3-random库的使用"><a href="#3-4-模块3-random库的使用" class="headerlink" title="3.4 模块3: random库的使用"></a>3.4 模块3: random库的使用</h2><p>伪随机数: 采用梅森旋转算法生成的(伪)随机序列中元素<br><code>import random</code>random库主要用于生成随机数<br>两类函数</p>
+<ol>
+<li>基本随机数函数：<br>seed() 种子可以用于复现随机过程<br>random() 生成一个[0.0, 1.0)之间的随机小数</li>
+<li>扩展随机数函数： （掌握3~4个即可）<br>randint(a, b), 生成一个[a, b]之间的整数<br>randrange(m, n[, k]), 生成一个[m, n)之间以k为步长的随机整数<br>getrandbits(k), 生成一个k比特长的随机整数<br>uniform(a, b),生成一个[a, b]之间的随机小数<br>choice(seq), 从序列seq中随机选择一个元素<br>shuffle(seq), 将序列seq中元素随机排列，返回打乱后的序列</li>
+</ol>
+<h2 id="3-5-实例6-圆周率的计算"><a href="#3-5-实例6-圆周率的计算" class="headerlink" title="3.5 实例6: 圆周率的计算"></a>3.5 实例6: 圆周率的计算</h2><p>蒙特卡罗方法</p>
+<h1 id="4-函数和代码复用"><a href="#4-函数和代码复用" class="headerlink" title="4 函数和代码复用"></a>4 函数和代码复用</h1><h2 id="4-1-函数的定义与使用"><a href="#4-1-函数的定义与使用" class="headerlink" title="4.1 函数的定义与使用"></a>4.1 函数的定义与使用</h2><h3 id="函数的理解与定义"><a href="#函数的理解与定义" class="headerlink" title="函数的理解与定义"></a>函数的理解与定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def &lt;函数名&gt;(&lt;参数(0个或多个)&gt;) : </span><br><span class="line">    &lt;函数体&gt; return &lt;返回值&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="函数的使用及调用过程"><a href="#函数的使用及调用过程" class="headerlink" title="函数的使用及调用过程"></a>函数的使用及调用过程</h3><p>函数名加上函数运算符， 一对小括号<br>– 括号之间是所有可选的参数<br>– 即使没有参数， 小括号也不能省</p>
+<h3 id="函数的参数传递"><a href="#函数的参数传递" class="headerlink" title="函数的参数传递"></a>函数的参数传递</h3><ol>
+<li>函数可以有参数，也可以没有，但必须保留括号<br><code>def &lt;函数名&gt;() : &lt;函数体&gt; return &lt;返回值&gt;</code></li>
+<li>函数定义时可以为某些参数指定默认值，构成可选参数(默认参数要定义在非可选参数后）<br><code>def &lt;函数名&gt;(&lt;非可选参数&gt;, &lt;可选参数&gt;) : &lt;函数体&gt; return &lt;返回值&gt;</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; def f(x = True):</span><br><span class="line">&apos;&apos;&apos;whether x is a correct word or not&apos;&apos;&apos; if x:</span><br><span class="line">print(&apos;x is a correct word&apos;) print(&apos;OK&apos;)</span><br><span class="line">&gt;&gt;&gt; f()</span><br><span class="line">x is a correct word OK</span><br><span class="line">&gt;&gt;&gt; f(False)</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>可变参数传递：不确定参数总数量<br><code>def &lt;函数名&gt;(&lt;参数&gt;, *b ) : &lt;函数体&gt; return &lt;返回值&gt;</code></li>
+<li>参数传递的两种方式:位置 名称<br>关键字参数是让调用者通过使用参数名区分参数<br>允许改变参 数列表中的参数顺序</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; def f(x , y):</span><br><span class="line">&apos;&apos;&apos;x and y both correct words or not &apos;&apos;&apos; if y:</span><br><span class="line">print(x, &apos;and y both correct &apos;) print(x, &apos;is OK&apos;)</span><br><span class="line">&gt;&gt;&gt; f(68, False)</span><br><span class="line">68 is OK</span><br><span class="line">&gt;&gt;&gt; f(y = False, x = 68)</span><br><span class="line">68 is OK</span><br><span class="line">&gt;&gt;&gt; f(y = False, 68)</span><br><span class="line">SyntaxError: non-keyword arg after keyword arg</span><br></pre></td></tr></table></figure>
+<h3 id="函数的返回值"><a href="#函数的返回值" class="headerlink" title="函数的返回值"></a>函数的返回值</h3><ul>
+<li>return保留字用来传递返回值</li>
+<li>函数可以有返回值，也可以没有，可以有return，也可以没有</li>
+<li>return可以传递0个返回值，也可以传递任意多个返回值</li>
+</ul>
+<h3 id="局部变量和全局变量"><a href="#局部变量和全局变量" class="headerlink" title="局部变量和全局变量"></a>局部变量和全局变量</h3><ol>
+<li>基本数据类型，无论是否重名，局部变量和全局变量是不同变量</li>
+</ol>
+<ul>
+<li>局部变量是函数内部的占位符，与全局变量可能重名但不同</li>
+<li>函数运算结束后，局部变量被释放</li>
+<li>可以使用global保留字在函数内部使用全局变量</li>
+</ul>
+<ol start="2">
+<li>局部变量为组合数据类型且未创建，等同于全局变量</li>
+</ol>
+<h3 id="lambda函数：返回函数名作为结果"><a href="#lambda函数：返回函数名作为结果" class="headerlink" title="lambda函数：返回函数名作为结果"></a>lambda函数：返回函数名作为结果</h3><p>&lt;函数名&gt; = lambda &lt;参数&gt;: &lt;表达式&gt;<br>主要用作一些特定函数或方法的参数<br>一般情况，建议使用def定义的普通函数</p>
+<h3 id="传递函数"><a href="#传递函数" class="headerlink" title="传递函数"></a>传递函数</h3><p>函数可以像参数一样传递给另外一个函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; def addMe2Me(x): return x+x</span><br><span class="line">&gt;&gt;&gt; def self(f, y): print(f(y))</span><br><span class="line">&gt;&gt;&gt; self(addMe2Me, 2.2)</span><br><span class="line">4.4</span><br></pre></td></tr></table></figure>
+<h2 id="4-3-代码复用与函数递归"><a href="#4-3-代码复用与函数递归" class="headerlink" title="4.3 代码复用与函数递归"></a>4.3 代码复用与函数递归</h2><ul>
+<li>代码复用与模块化设计</li>
+<li>函数递归的理解</li>
+<li>函数递归的调用过程</li>
+<li>函数递归实例解析</li>
+</ul>
+<p>REF：<br><a href="https://blog.csdn.net/xun527/article/details/76652119" target="_blank" rel="noopener">可迭代对象是啥</a><br><a href="http://www.cnblogs.com/allenblogs/p/10344814.html" target="_blank" rel="noopener">Python3的range()函数返回的不是列表，是可迭代对象</a><br><a href="http://wklken.me/posts/2012/12/30/python-base-list.html#lie-biao-jie-xi_1" target="_blank" rel="noopener">列表及列表解析小结</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -386,7 +659,7 @@
 <p>sum<br>mean<br>std<br>var<br>min<br>max<br>argmin<br>argmax<br>cumsum<br>cumprod</p>
 <h3 id="ndarray的专门应用—线性代数"><a href="#ndarray的专门应用—线性代数" class="headerlink" title="ndarray的专门应用—线性代数"></a>ndarray的专门应用—线性代数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = np.array([[<span class="number">1</span>,<span class="number">2</span>], [<span class="number">3</span>,<span class="number">4</span>]]) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r1 = np.linalg.det(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r1)</span><br><span class="line"><span class="number">-2.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r2 = np.linalg.inv(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(r2)</span><br><span class="line">[[<span class="number">-2.</span> <span class="number">1.</span> ]</span><br><span class="line">[ <span class="number">1.5</span> <span class="number">-0.5</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r3 = np.dot(x, x) &gt;&gt;&gt; print(r3)</span><br><span class="line">[[ <span class="number">7</span> <span class="number">10</span>]</span><br><span class="line">[<span class="number">15</span> <span class="number">22</span>]]</span><br></pre></td></tr></table></figure>
 <p>dot<br>矩阵内积<br>linalg.det<br>行列式<br>linalg.inv<br>逆矩阵<br>linalg.solve<br>多元一次方 程组求根<br>linalg.eig<br>求特征值和<br>特征向量</p>
-<h3 id="ndarray的ufunc函数"><a href="#ndarray的ufunc函数" class="headerlink" title="ndarray的ufunc函数"></a>ndarray的ufunc函数</h3><p>ufunc(universal function) 是一种能对数组的每个元素 进行操作的函数。NumPy内 置的许多ufunc函数都是在C 语言级别实现的，计算速度 非常快。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Filename: math_numpy.py</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">100</span>, <span class="number">0.01</span>) t_m1 = time.clock()</span><br><span class="line"><span class="keyword">for</span> i, t <span class="keyword">in</span> enumerate(x):</span><br><span class="line">     x[i] = math.pow((math.sin(t)), <span class="number">2</span>)</span><br><span class="line">t_m2 = time.clock()</span><br><span class="line">y = np.arange(<span class="number">0</span>,<span class="number">100</span>,<span class="number">0.01</span>)</span><br><span class="line">t_n1 = time.clock()</span><br><span class="line">y = np.power(np.sin(y), <span class="number">2</span>)</span><br><span class="line">t_n2 = time.clock()</span><br><span class="line">print(<span class="string">'Running time of math:'</span>, t_m2 - t_m1) </span><br><span class="line">print(<span class="string">'Running time of numpy:'</span>, t_n2 - t_n1)</span><br></pre></td></tr></table></figure></p>
+<h3 id="ndarray的ufunc函数"><a href="#ndarray的ufunc函数" class="headerlink" title="ndarray的ufunc函数"></a>ndarray的ufunc函数</h3><p>ufunc(universal function) 是一种能对数组的每个元素 进行操作的函数。NumPy内 置的许多ufunc函数都是在C 语言级别实现的，计算速度 非常快。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Filename: math_numpy.py</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">100</span>, <span class="number">0.01</span>) </span><br><span class="line">t_m1 = time.clock()</span><br><span class="line"><span class="keyword">for</span> i, t <span class="keyword">in</span> enumerate(x):</span><br><span class="line">     x[i] = math.pow((math.sin(t)), <span class="number">2</span>)</span><br><span class="line">t_m2 = time.clock()</span><br><span class="line">y = np.arange(<span class="number">0</span>,<span class="number">100</span>,<span class="number">0.01</span>)</span><br><span class="line">t_n1 = time.clock()</span><br><span class="line">y = np.power(np.sin(y), <span class="number">2</span>)</span><br><span class="line">t_n2 = time.clock()</span><br><span class="line">print(<span class="string">'Running time of math:'</span>, t_m2 - t_m1) </span><br><span class="line">print(<span class="string">'Running time of numpy:'</span>, t_n2 - t_n1)</span><br></pre></td></tr></table></figure></p>
 <h2 id="2-Series-变长字典"><a href="#2-Series-变长字典" class="headerlink" title="2 Series(变长字典)"></a>2 Series(变长字典)</h2><p><a href="http://blog.chinaunix.net/uid-23100982-id-3540311.html" target="_blank" rel="noopener">Pandas中兼并数组和字典功能的Series</a><br>− 类似一维数组的对象<br>− 由数据和索引组成</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pandas <span class="keyword">import</span> Series </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>aSer = Series([<span class="number">1</span>,<span class="number">2.0</span>,<span class="string">'a'</span>]) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>aSer</span><br><span class="line"><span class="number">0</span>  <span class="number">1</span></span><br><span class="line"><span class="number">1</span>  <span class="number">2</span></span><br><span class="line"><span class="number">2</span>  a</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
 <h3 id="自定义Series的index"><a href="#自定义Series的index" class="headerlink" title="自定义Series的index"></a>自定义Series的index</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bSer = pd.Series([<span class="string">'apple'</span>,<span class="string">'peach'</span>,<span class="string">'lemon'</span>], index = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bSer</span><br><span class="line"><span class="number">1</span> apple</span><br><span class="line"><span class="number">2</span> peach</span><br><span class="line"><span class="number">3</span> lemon</span><br><span class="line">dtype: object</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bSer.index</span><br><span class="line">Int64Index([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], dtype=<span class="string">'int64'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bSer.values</span><br><span class="line">array([<span class="string">'apple'</span>, <span class="string">'peach'</span>, <span class="string">'lemon'</span>], dtype=object)</span><br></pre></td></tr></table></figure>
@@ -481,7 +754,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -489,6 +762,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
             
 
           </nav>
