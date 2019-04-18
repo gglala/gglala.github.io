@@ -107,7 +107,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Python,">
 
 
 
@@ -118,17 +118,18 @@
 
 
 
-<meta name="description" content="1 ndarray(N维数组)Python中的数组• 用list和tuple等数据结构表示数组− 一维数组 list = [1,2,3,4]− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]• array模块− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法 N维数组– NumPy中基">
+<meta name="description" content="SciPy是一个基于Python的软件生态圈，包括常用的NumPy，pandas等核心库，也有它专门的数据结构，常用的有ndarray(N维数组)、Series(变长字典)和DataFrame(数据框)。">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SciPy ndarray Series DataFrame">
+<meta property="og:title" content="SciPy: ndarray Series DataFrame">
 <meta property="og:url" content="http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/index.html">
 <meta property="og:site_name" content="La La Land">
-<meta property="og:description" content="1 ndarray(N维数组)Python中的数组• 用list和tuple等数据结构表示数组− 一维数组 list = [1,2,3,4]− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]• array模块− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法 N维数组– NumPy中基">
+<meta property="og:description" content="SciPy是一个基于Python的软件生态圈，包括常用的NumPy，pandas等核心库，也有它专门的数据结构，常用的有ndarray(N维数组)、Series(变长字典)和DataFrame(数据框)。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-16T03:11:03.001Z">
+<meta property="og:updated_time" content="2019-04-18T03:13:27.921Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SciPy ndarray Series DataFrame">
-<meta name="twitter:description" content="1 ndarray(N维数组)Python中的数组• 用list和tuple等数据结构表示数组− 一维数组 list = [1,2,3,4]− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]• array模块− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法 N维数组– NumPy中基">
+<meta name="twitter:title" content="SciPy: ndarray Series DataFrame">
+<meta name="twitter:description" content="SciPy是一个基于Python的软件生态圈，包括常用的NumPy，pandas等核心库，也有它专门的数据结构，常用的有ndarray(N维数组)、Series(变长字典)和DataFrame(数据框)。">
 
 
 
@@ -164,7 +165,7 @@
 
 
 
-  <title>SciPy ndarray Series DataFrame | La La Land</title>
+  <title>SciPy: ndarray Series DataFrame | La La Land</title>
   
 
 
@@ -318,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SciPy ndarray Series DataFrame</h1>
+          <h1 class="post-title" itemprop="name headline">SciPy: ndarray Series DataFrame</h1>
         
 
         <div class="post-meta">
@@ -368,7 +369,9 @@
       
 
       
-        <h2 id="1-ndarray-N维数组"><a href="#1-ndarray-N维数组" class="headerlink" title="1 ndarray(N维数组)"></a>1 ndarray(N维数组)</h2><h3 id="Python中的数组"><a href="#Python中的数组" class="headerlink" title="Python中的数组"></a>Python中的数组</h3><p>• 用list和tuple等数据结构表示数组<br>− 一维数组 list = [1,2,3,4]<br>− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]<br>• array模块<br>− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法</p>
+        <p>SciPy是一个基于Python的软件生态圈，包括常用的NumPy，pandas等核心库，也有它专门的数据结构，常用的有ndarray(N维数组)、Series(变长字典)和DataFrame(数据框)。</p>
+<a id="more"></a>
+<h2 id="1-ndarray-N维数组"><a href="#1-ndarray-N维数组" class="headerlink" title="1 ndarray(N维数组)"></a>1 ndarray(N维数组)</h2><h3 id="Python中的数组"><a href="#Python中的数组" class="headerlink" title="Python中的数组"></a>Python中的数组</h3><p>• 用list和tuple等数据结构表示数组<br>− 一维数组 list = [1,2,3,4]<br>− 二维数组 list = [[1,2,3],[4,5,6],[7,8,9]]<br>• array模块<br>− 通过array函数创建数组，array.array(“B”, range(5)) − 提供append、insert和read等方法</p>
 <h3 id="N维数组"><a href="#N维数组" class="headerlink" title="N维数组"></a>N维数组</h3><p>– NumPy中基本的数据结构<br>– 所有元素是同一种类型<br>– 别名为array<br>– 维度(dimensions)称为轴 (axes)，轴的个数称为秩(rank)<br>– 基本属性<br>• ndarray.ndim(秩)<br>• ndarray.shape(维度)<br>• ndarray.size(元素总个数)<br>• ndarray.dtype(元素类型)<br>• ndarray.itemsize(元素字节大小)</p>
 <h3 id="ndarray的创建"><a href="#ndarray的创建" class="headerlink" title="ndarray的创建"></a>ndarray的创建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>aArray = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>aArray</span><br><span class="line">array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bArray = np.array([(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)]) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bArray</span><br><span class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">      [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.arange(<span class="number">1</span>,<span class="number">5</span>,<span class="number">0.5</span>)</span><br><span class="line">array([<span class="number">1.</span>, <span class="number">1.5</span>, <span class="number">2.</span>, <span class="number">2.5</span>, <span class="number">3.</span>, <span class="number">3.5</span>, <span class="number">4.</span>, <span class="number">4.5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.random.random((<span class="number">2</span>,<span class="number">2</span>))</span><br><span class="line">array([[ <span class="number">0.79777004</span>, <span class="number">0.1468679</span> ], </span><br><span class="line">      [ <span class="number">0.95838379</span>, <span class="number">0.86106278</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.linspace(<span class="number">1</span>, <span class="number">2</span>, <span class="number">10</span>, endpoint=<span class="literal">False</span>)</span><br><span class="line">array([ <span class="number">1.</span> , <span class="number">1.1</span>, <span class="number">1.2</span>, <span class="number">1.3</span>, <span class="number">1.4</span>, <span class="number">1.5</span>, <span class="number">1.6</span>, <span class="number">1.7</span>, <span class="number">1.8</span>, <span class="number">1.9</span>])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.ones([<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">array([[ <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>], [ <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.zeros((<span class="number">2</span>,<span class="number">2</span>))</span><br><span class="line">array([[ <span class="number">0.</span>, <span class="number">0.</span>], [ <span class="number">0.</span>, <span class="number">0.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.fromfunction(<span class="keyword">lambda</span> i,j:(i+<span class="number">1</span>)*(j+<span class="number">1</span>), (<span class="number">9</span>,<span class="number">9</span>))</span><br><span class="line">array([[ <span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>, <span class="number">4.</span>, <span class="number">5.</span>, <span class="number">6.</span>, <span class="number">7.</span>, <span class="number">8.</span>, <span class="number">9.</span>],</span><br><span class="line">    [ <span class="number">2.</span>, <span class="number">4.</span>, <span class="number">6.</span>, <span class="number">8.</span>, <span class="number">10.</span>, <span class="number">12.</span>, <span class="number">14.</span>, <span class="number">16.</span>, <span class="number">18.</span>],</span><br><span class="line">    [ <span class="number">3.</span>, <span class="number">6.</span>, <span class="number">9.</span>, <span class="number">12.</span>, <span class="number">15.</span>, <span class="number">18.</span>, <span class="number">21.</span>, <span class="number">24.</span>, <span class="number">27.</span>],</span><br><span class="line">    [ <span class="number">4.</span>, <span class="number">8.</span>, <span class="number">12.</span>, <span class="number">16.</span>, <span class="number">20.</span>, <span class="number">24.</span>, <span class="number">28.</span>, <span class="number">32.</span>, <span class="number">36.</span>],</span><br><span class="line">    [ <span class="number">5.</span>, <span class="number">10.</span>, <span class="number">15.</span>, <span class="number">20.</span>, <span class="number">25.</span>, <span class="number">30.</span>, <span class="number">35.</span>, <span class="number">40.</span>, <span class="number">45.</span>], </span><br><span class="line">    [ <span class="number">6.</span>, <span class="number">12.</span>, <span class="number">18.</span>, <span class="number">24.</span>, <span class="number">30.</span>, <span class="number">36.</span>, <span class="number">42.</span>, <span class="number">48.</span>, <span class="number">54.</span>], </span><br><span class="line">    [ <span class="number">7.</span>, <span class="number">14.</span>, <span class="number">21.</span>, <span class="number">28.</span>, <span class="number">35.</span>, <span class="number">42.</span>, <span class="number">49.</span>, <span class="number">56.</span>, <span class="number">63.</span>], </span><br><span class="line">    [ <span class="number">8.</span>, <span class="number">16.</span>, <span class="number">24.</span>, <span class="number">32.</span>, <span class="number">40.</span>, <span class="number">48.</span>, <span class="number">56.</span>, <span class="number">64.</span>, <span class="number">72.</span>], </span><br><span class="line">    [ <span class="number">9.</span>, <span class="number">18.</span>, <span class="number">27.</span>, <span class="number">36.</span>, <span class="number">45.</span>, <span class="number">54.</span>, <span class="number">63.</span>, <span class="number">72.</span>, <span class="number">81.</span>]])</span><br></pre></td></tr></table></figure>
 <h3 id="ndarray的操作"><a href="#ndarray的操作" class="headerlink" title="ndarray的操作"></a>ndarray的操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>aArray = np.array([(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)])</span><br><span class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], </span><br><span class="line">     [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(aArray[<span class="number">1</span>]) </span><br><span class="line">[<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(aArray[<span class="number">0</span>:<span class="number">2</span>]) </span><br><span class="line">[[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">[<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(aArray[:,[<span class="number">0</span>,<span class="number">1</span>]]) </span><br><span class="line">[[<span class="number">1</span> <span class="number">2</span>]</span><br><span class="line">[<span class="number">4</span> <span class="number">5</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(aArray[<span class="number">1</span>,[<span class="number">0</span>,<span class="number">1</span>]]) </span><br><span class="line">[<span class="number">4</span> <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> row <span class="keyword">in</span> aArray:</span><br><span class="line">        print(row) </span><br><span class="line">[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">[<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]</span><br></pre></td></tr></table></figure>
@@ -419,7 +422,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/" title="SciPy ndarray Series DataFrame">http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/</a>
+    <a href="http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/" title="SciPy: ndarray Series DataFrame">http://gglala.github.io/2019/04/14/SciPy-ndarray-Series-DataFrame/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -431,6 +434,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
       
 
       
@@ -447,8 +456,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/17/Python-basics/" rel="prev" title="Python basics">
-                Python basics <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/17/Python-basics/" rel="prev" title="Python基本语法元素">
+                Python基本语法元素 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -526,7 +535,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -534,6 +543,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
             
 
           </nav>
