@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/lalaland.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/movie.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/lalaland.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NLP,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="进行NLP任务的第一步就是预处理，和中文预处理不同，英文的预处理不需要分词，但是需要考虑到词性的转换和首字母缩写的还原。">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="英文文本预处理和N-gram模型按频率提取主题词">
+<meta property="og:url" content="http://gglala.github.io/2019/09/15/Text-Preprocessing/index.html">
+<meta property="og:site_name" content="La La Land">
+<meta property="og:description" content="进行NLP任务的第一步就是预处理，和中文预处理不同，英文的预处理不需要分词，但是需要考虑到词性的转换和首字母缩写的还原。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-15T14:39:02.631Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="英文文本预处理和N-gram模型按频率提取主题词">
+<meta name="twitter:description" content="进行NLP任务的第一步就是预处理，和中文预处理不同，英文的预处理不需要分词，但是需要考虑到词性的转换和首字母缩写的还原。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gglala.github.io/2019/09/15/Text-Preprocessing/">
+
+
+
+
+
+  <title>英文文本预处理和N-gram模型按频率提取主题词 | La La Land</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">La La Land</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gglala.github.io/2019/09/15/Text-Preprocessing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ling an">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="La La Land">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">英文文本预处理和N-gram模型按频率提取主题词</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-15T22:17:31+08:00">
+                2019-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>进行NLP任务的第一步就是预处理，和中文预处理不同，英文的预处理不需要分词，但是需要考虑到词性的转换和首字母缩写的还原。<br><a id="more"></a></p>
+<ol>
+<li>必须要做的：</li>
+</ol>
+<ul>
+<li>噪音消除（标点）</li>
+<li>将文章转为小写（在某些情况下可以依赖于任务）</li>
+</ul>
+<ol start="2">
+<li>应该做的：</li>
+</ol>
+<ul>
+<li>简单规范化 – （例如，标准化几乎相同的单词）</li>
+<li>根据任务判断是否要做：</li>
+</ul>
+<ol start="3">
+<li>高级标准化（例如，解决词汇外单词）</li>
+</ol>
+<ul>
+<li>停止删除单词</li>
+<li>词干/词形还原</li>
+<li>文本丰富/增强</li>
+</ul>
+<p>这里的一段文字来自于John F. Kennedy的演讲“We choose to go to the Moon”。<br>首先，用正则表达式将文本去除标点符号，转为小写。再用list保存单词。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">text = <span class="string">'''We choose to go to the Moon! We choose to go to the Moon...We choose to go to the Moon in this decade and do the other things, not because they are easy, but because they are hard; because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one we intend to win, and the others, too.'''</span></span><br><span class="line"><span class="comment"># clean the text, remove the 标点符号</span></span><br><span class="line">clean_text = re.sub(<span class="string">"[^a-zA-Z-]"</span>,<span class="string">" "</span>,text)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将string split为小写单词list</span></span><br><span class="line">words_list = clean_text.lower().split()</span><br><span class="line">print(words_list)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[&apos;we&apos;, &apos;choose&apos;, &apos;to&apos;, &apos;go&apos;, &apos;to&apos;, &apos;the&apos;, &apos;moon&apos;, &apos;we&apos;, &apos;choose&apos;, &apos;to&apos;, &apos;go&apos;, &apos;to&apos;, &apos;the&apos;, &apos;moon&apos;, &apos;we&apos;, &apos;choose&apos;, &apos;to&apos;, &apos;go&apos;, &apos;to&apos;, &apos;the&apos;, &apos;moon&apos;, &apos;in&apos;, &apos;this&apos;, &apos;decade&apos;, &apos;and&apos;, &apos;do&apos;, &apos;the&apos;, &apos;other&apos;, &apos;things&apos;, &apos;not&apos;, &apos;because&apos;, &apos;they&apos;, &apos;are&apos;, &apos;easy&apos;, &apos;but&apos;, &apos;because&apos;, &apos;they&apos;, &apos;are&apos;, &apos;hard&apos;, &apos;because&apos;, &apos;that&apos;, &apos;goal&apos;, &apos;will&apos;, &apos;serve&apos;, &apos;to&apos;, &apos;organize&apos;, &apos;and&apos;, &apos;measure&apos;, &apos;the&apos;, &apos;best&apos;, &apos;of&apos;, &apos;our&apos;, &apos;energies&apos;, &apos;and&apos;, &apos;skills&apos;, &apos;because&apos;, &apos;that&apos;, &apos;challenge&apos;, &apos;is&apos;, &apos;one&apos;, &apos;that&apos;, &apos;we&apos;, &apos;are&apos;, &apos;willing&apos;, &apos;to&apos;, &apos;accept&apos;, &apos;one&apos;, &apos;we&apos;, &apos;are&apos;, &apos;unwilling&apos;, &apos;to&apos;, &apos;postpone&apos;, &apos;and&apos;, &apos;one&apos;, &apos;we&apos;, &apos;intend&apos;, &apos;to&apos;, &apos;win&apos;, &apos;and&apos;, &apos;the&apos;, &apos;others&apos;, &apos;too&apos;]
+</code></pre><p>利用nltk的stopwords库，删除其中的停用词。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk</span><br><span class="line"><span class="keyword">from</span> nltk.corpus <span class="keyword">import</span> stopwords</span><br><span class="line">stop_words = stopwords.words(<span class="string">'english'</span>)</span><br><span class="line">print(stop_words)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[&apos;i&apos;, &apos;me&apos;, &apos;my&apos;, &apos;myself&apos;, &apos;we&apos;, &apos;our&apos;, &apos;ours&apos;, &apos;ourselves&apos;, &apos;you&apos;, &quot;you&apos;re&quot;, &quot;you&apos;ve&quot;, &quot;you&apos;ll&quot;, &quot;you&apos;d&quot;, &apos;your&apos;, &apos;yours&apos;, &apos;yourself&apos;, &apos;yourselves&apos;, &apos;he&apos;, &apos;him&apos;, &apos;his&apos;, &apos;himself&apos;, &apos;she&apos;, &quot;she&apos;s&quot;, &apos;her&apos;, &apos;hers&apos;, &apos;herself&apos;, &apos;it&apos;, &quot;it&apos;s&quot;, &apos;its&apos;, &apos;itself&apos;, &apos;they&apos;, &apos;them&apos;, &apos;their&apos;, &apos;theirs&apos;, &apos;themselves&apos;, &apos;what&apos;, &apos;which&apos;, &apos;who&apos;, &apos;whom&apos;, &apos;this&apos;, &apos;that&apos;, &quot;that&apos;ll&quot;, &apos;these&apos;, &apos;those&apos;, &apos;am&apos;, &apos;is&apos;, &apos;are&apos;, &apos;was&apos;, &apos;were&apos;, &apos;be&apos;, &apos;been&apos;, &apos;being&apos;, &apos;have&apos;, &apos;has&apos;, &apos;had&apos;, &apos;having&apos;, &apos;do&apos;, &apos;does&apos;, &apos;did&apos;, &apos;doing&apos;, &apos;a&apos;, &apos;an&apos;, &apos;the&apos;, &apos;and&apos;, &apos;but&apos;, &apos;if&apos;, &apos;or&apos;, &apos;because&apos;, &apos;as&apos;, &apos;until&apos;, &apos;while&apos;, &apos;of&apos;, &apos;at&apos;, &apos;by&apos;, &apos;for&apos;, &apos;with&apos;, &apos;about&apos;, &apos;against&apos;, &apos;between&apos;, &apos;into&apos;, &apos;through&apos;, &apos;during&apos;, &apos;before&apos;, &apos;after&apos;, &apos;above&apos;, &apos;below&apos;, &apos;to&apos;, &apos;from&apos;, &apos;up&apos;, &apos;down&apos;, &apos;in&apos;, &apos;out&apos;, &apos;on&apos;, &apos;off&apos;, &apos;over&apos;, &apos;under&apos;, &apos;again&apos;, &apos;further&apos;, &apos;then&apos;, &apos;once&apos;, &apos;here&apos;, &apos;there&apos;, &apos;when&apos;, &apos;where&apos;, &apos;why&apos;, &apos;how&apos;, &apos;all&apos;, &apos;any&apos;, &apos;both&apos;, &apos;each&apos;, &apos;few&apos;, &apos;more&apos;, &apos;most&apos;, &apos;other&apos;, &apos;some&apos;, &apos;such&apos;, &apos;no&apos;, &apos;nor&apos;, &apos;not&apos;, &apos;only&apos;, &apos;own&apos;, &apos;same&apos;, &apos;so&apos;, &apos;than&apos;, &apos;too&apos;, &apos;very&apos;, &apos;s&apos;, &apos;t&apos;, &apos;can&apos;, &apos;will&apos;, &apos;just&apos;, &apos;don&apos;, &quot;don&apos;t&quot;, &apos;should&apos;, &quot;should&apos;ve&quot;, &apos;now&apos;, &apos;d&apos;, &apos;ll&apos;, &apos;m&apos;, &apos;o&apos;, &apos;re&apos;, &apos;ve&apos;, &apos;y&apos;, &apos;ain&apos;, &apos;aren&apos;, &quot;aren&apos;t&quot;, &apos;couldn&apos;, &quot;couldn&apos;t&quot;, &apos;didn&apos;, &quot;didn&apos;t&quot;, &apos;doesn&apos;, &quot;doesn&apos;t&quot;, &apos;hadn&apos;, &quot;hadn&apos;t&quot;, &apos;hasn&apos;, &quot;hasn&apos;t&quot;, &apos;haven&apos;, &quot;haven&apos;t&quot;, &apos;isn&apos;, &quot;isn&apos;t&quot;, &apos;ma&apos;, &apos;mightn&apos;, &quot;mightn&apos;t&quot;, &apos;mustn&apos;, &quot;mustn&apos;t&quot;, &apos;needn&apos;, &quot;needn&apos;t&quot;, &apos;shan&apos;, &quot;shan&apos;t&quot;, &apos;shouldn&apos;, &quot;shouldn&apos;t&quot;, &apos;wasn&apos;, &quot;wasn&apos;t&quot;, &apos;weren&apos;, &quot;weren&apos;t&quot;, &apos;won&apos;, &quot;won&apos;t&quot;, &apos;wouldn&apos;, &quot;wouldn&apos;t&quot;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">words_list=[word <span class="keyword">for</span> word <span class="keyword">in</span> words_list <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> stop_words]</span><br><span class="line">print(words_list)</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;choose&apos;, &apos;go&apos;, &apos;moon&apos;, &apos;choose&apos;, &apos;go&apos;, &apos;moon&apos;, &apos;choose&apos;, &apos;go&apos;, &apos;moon&apos;, &apos;decade&apos;, &apos;things&apos;, &apos;easy&apos;, &apos;hard&apos;, &apos;goal&apos;, &apos;serve&apos;, &apos;organize&apos;, &apos;measure&apos;, &apos;best&apos;, &apos;energies&apos;, &apos;skills&apos;, &apos;challenge&apos;, &apos;one&apos;, &apos;willing&apos;, &apos;accept&apos;, &apos;one&apos;, &apos;unwilling&apos;, &apos;postpone&apos;, &apos;one&apos;, &apos;intend&apos;, &apos;win&apos;, &apos;others&apos;]
+</code></pre><p>可以看到，the、to、of等词都被删去了。<br>接下来做词性还原。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk <span class="keyword">import</span> word_tokenize, pos_tag</span><br><span class="line"><span class="keyword">from</span> nltk.corpus <span class="keyword">import</span> wordnet</span><br><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> WordNetLemmatizer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取单词的词性</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_wordnet_pos</span><span class="params">(tag)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> tag.startswith(<span class="string">'J'</span>):</span><br><span class="line">        <span class="keyword">return</span> wordnet.ADJ</span><br><span class="line">    <span class="keyword">elif</span> tag.startswith(<span class="string">'V'</span>):</span><br><span class="line">        <span class="keyword">return</span> wordnet.VERB</span><br><span class="line">    <span class="keyword">elif</span> tag.startswith(<span class="string">'N'</span>):</span><br><span class="line">        <span class="keyword">return</span> wordnet.NOUN</span><br><span class="line">    <span class="keyword">elif</span> tag.startswith(<span class="string">'R'</span>):</span><br><span class="line">        <span class="keyword">return</span> wordnet.ADV</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">tagged_sent = pos_tag(words_list)     <span class="comment"># 获取单词词性</span></span><br><span class="line"></span><br><span class="line">wnl = WordNetLemmatizer()</span><br><span class="line">lemmas_sent = []</span><br><span class="line"><span class="keyword">for</span> tag <span class="keyword">in</span> tagged_sent:</span><br><span class="line">    wordnet_pos = get_wordnet_pos(tag[<span class="number">1</span>]) <span class="keyword">or</span> wordnet.NOUN</span><br><span class="line">    lemmas_sent.append(wnl.lemmatize(tag[<span class="number">0</span>], pos=wordnet_pos)) <span class="comment"># 词形还原</span></span><br><span class="line"></span><br><span class="line">print(lemmas_sent)</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;choose&apos;, &apos;go&apos;, &apos;moon&apos;, &apos;choose&apos;, &apos;go&apos;, &apos;moon&apos;, &apos;choose&apos;, &apos;go&apos;, &apos;moon&apos;, &apos;decade&apos;, &apos;thing&apos;, &apos;easy&apos;, &apos;hard&apos;, &apos;goal&apos;, &apos;serve&apos;, &apos;organize&apos;, &apos;measure&apos;, &apos;best&apos;, &apos;energy&apos;, &apos;skills&apos;, &apos;challenge&apos;, &apos;one&apos;, &apos;willing&apos;, &apos;accept&apos;, &apos;one&apos;, &apos;unwilling&apos;, &apos;postpone&apos;, &apos;one&apos;, &apos;intend&apos;, &apos;win&apos;, &apos;others&apos;]
+</code></pre><p>利用ngram（这里n=2）计算词频，可以看到出现频率最高的，choose go和go moon很可能就是这篇文章的主题词。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk</span><br><span class="line"><span class="keyword">from</span> nltk.util <span class="keyword">import</span> ngrams</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Function to generate n-grams from sentences.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">extract_ngrams</span><span class="params">(data, num)</span>:</span></span><br><span class="line">    n_grams = ngrams(data, num)</span><br><span class="line">    <span class="keyword">return</span> [ <span class="string">' '</span>.join(grams) <span class="keyword">for</span> grams <span class="keyword">in</span> n_grams]</span><br><span class="line"></span><br><span class="line">copus_word=extract_ngrams(lemmas_sent, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">dic_filter=&#123;&#125;                     <span class="comment"># 统计词频</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> copus_word:</span><br><span class="line">    <span class="keyword">if</span> item <span class="keyword">in</span> dic_filter:</span><br><span class="line">        dic_filter[item]+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        dic_filter[item]=<span class="number">1</span></span><br><span class="line">sort_dic=dict(sorted(dic_filter.items(),key=<span class="keyword">lambda</span> val:val[<span class="number">1</span>],reverse=<span class="literal">True</span>))       <span class="comment">#reverse=True为降序排列,返回list</span></span><br><span class="line">print(sort_dic)</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;choose go&apos;: 3, &apos;go moon&apos;: 3, &apos;moon choose&apos;: 2, &apos;moon decade&apos;: 1, &apos;decade thing&apos;: 1, &apos;thing easy&apos;: 1, &apos;easy hard&apos;: 1, &apos;hard goal&apos;: 1, &apos;goal serve&apos;: 1, &apos;serve organize&apos;: 1, &apos;organize measure&apos;: 1, &apos;measure best&apos;: 1, &apos;best energy&apos;: 1, &apos;energy skills&apos;: 1, &apos;skills challenge&apos;: 1, &apos;challenge one&apos;: 1, &apos;one willing&apos;: 1, &apos;willing accept&apos;: 1, &apos;accept one&apos;: 1, &apos;one unwilling&apos;: 1, &apos;unwilling postpone&apos;: 1, &apos;postpone one&apos;: 1, &apos;one intend&apos;: 1, &apos;intend win&apos;: 1, &apos;win others&apos;: 1}
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Ling an
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://gglala.github.io/2019/09/15/Text-Preprocessing/" title="英文文本预处理和N-gram模型按频率提取主题词">http://gglala.github.io/2019/09/15/Text-Preprocessing/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/sequence-list-tuple-string/" rel="next" title="序列：列表、元组、字符串">
+                <i class="fa fa-chevron-left"></i> 序列：列表、元组、字符串
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ling an</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ling an</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
